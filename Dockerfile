@@ -26,6 +26,13 @@ RUN \
 RUN \
   rm -f "config.yaml" || true && \
   mkdir -p config data plugins public/scripts/extensions/third-party backups && \
+  # Install VectFox (Similharity-Plugin)
+cd plugins && \
+git clone -b Similharity-Plugin https://github.com/KritBlade/VectFox.git similharity && \
+cd similharity && \
+npm install && \
+cd ../.. && \
+
   chown -R node:node config data plugins public/scripts/extensions/third-party backups && \
   ln -s "./config/config.yaml" "config.yaml"
 
